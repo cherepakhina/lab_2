@@ -14,7 +14,21 @@ if(isset($_POST['submit']))
     $sql.= "UPDATE users INNER JOIN roles ON users.id = roles.id SET users.role_id = roles.id;";
 
 	 if (mysqli_multi_query($conn, $sql)) {
-        header("Location: http://localhost/auth.php");
+        $query = "SELECT * FROM `users`";
+        if($result = $conn->query($query))
+        {
+            while($row = $result->fetch_assoc())
+            {
+                $_SESSION['id'] = $row['id'];
+                $_SESSION['email'] = $row['email'];
+                $_SESSION['password'] = $row['password'];
+                $_SESSION['f_name'] = $row['first_name'];
+                $_SESSION['l_name'] = $row['last_name'];
+                $_SESSION['pic'] = $row['photo'];
+                $_SESSION['auth'] = true;
+            }
+        }
+        header("Location: http://localhost/home.php");
         exit();
     } else {
         echo "Error: " . $sql . "

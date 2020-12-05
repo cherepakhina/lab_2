@@ -7,9 +7,6 @@
         }
         if(($_POST['password'] != $_POST['confirm_password'])){
             echo "Passwords did not match. ";
-        } else{
-            header("Location: http://localhost/signup.php");
-            exit();
         }
     }
 ?>
@@ -32,7 +29,7 @@
 <body>
 <div class="container">
 <h2>Sign up</h2>
-	<form method="post"> 
+	<form method="post" action="signup.php"> 
         <input type="email" name="email" required="" placeholder="Email"><br>
         <br>
         <input type="text" name="fname" required="" placeholder="First Name"><br>
