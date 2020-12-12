@@ -1,0 +1,48 @@
+ body {
+    min-width: 630px;
+ }
+ 
+ .header .container {
+    padding-left: 40px;
+    padding-right: 40px;
+ }
+
+ .container {
+    padding-left: 200px;
+    padding-right: 200px;
+ }
+ 
+ .container .column {
+    position: relative;
+    float: left;
+ }
+ 
+ .center {
+    padding: 20px 20px;
+    width: 100%;
+ }
+ 
+ .container {
+    overflow: hidden;
+ }
+
+ body {
+    margin: 0;
+    padding: 0;
+    font-family: 'opensans-regular';
+    line-height: 1.5em;
+    background: #a59f4771;
+ }
+ 
+ h1 {
+   font-family: 'opensans-bold';
+   color: #5f3017;
+ }
+
+ .header {
+    font-size: large;
+    padding: 0.3em;
+    background: #3e521e;
+ }
+ 
+ 

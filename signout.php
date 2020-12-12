@@ -6,7 +6,7 @@
 
  session_start();
  
- $_SESSION['auth'] = false;
+ $_SESSION['role'] = NULL;
 
  header("location: http://localhost/home.php");
  exit;

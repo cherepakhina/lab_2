@@ -8,17 +8,11 @@
    <link rel="stylesheet" href="assets/css/layout.css"> 
    <link rel="stylesheet" href="assets/css/fonts.css">
    <link rel="stylesheet" href="assets/css/style.css">
-   <style>
-        .table a {
-        display:block;
-        text-decoration:none;
-       }
-   </style>
 </head>
 <body>
 <header class="header">
     <div class="container">
-    <a href='home.php'><img src="assets/img/logo.png" alt="logo" height="10%" href='home.php' class='logo'></a>
+        <a href='home.php'><img src="assets/img/logo.png" alt="logo" height="10%" href='home.php' class='logo'></a>
         <div class="nav">
         <?php 
         session_start();
@@ -26,7 +20,7 @@
 
         if(!isset($_SESSION['role']))
         {
-            echo"<p><button id='myBtn'>Sign in</button> | <a href='register.php'>Sign up</a></p>
+            echo"<p><button id='myBtn' class='button'>Sign in</button> | <a href='register.php'>Sign up</a></p>
             <div id='myModal' class='modal'>
                 <div class='modal-content'>
                     <div class='modal-header'>
@@ -64,40 +58,54 @@
     </div>
 </header>
 <div class="container">
-    <h1>Users</h1>
-        <table>
-        <tr>
-          <th> <font face="Arial">id</font> </th> 
-          <th> <font face="Arial">First Name</font> </th> 
-          <th> <font face="Arial">Last Name</font> </th> 
-          <th> <font face="Arial">Email</font> </th> 
-          <th> <font face="Arial">Role</font> </th> 
-        </tr>
-            <?php
-            $query = "SELECT *, roles.title FROM users INNER JOIN roles ON users.role_id = roles.id";
-            if($result = $conn->query($query))
+    <main class="center">
+        <div class="pfp">
+        <?php
+            if(isset($_GET['id']))
             {
-                while($row = $result->fetch_assoc())
+                $id = $_GET['id'];
+                $query = "SELECT *, roles.title FROM users INNER JOIN roles ON users.role_id = roles.id WHERE users.id = '$id'";
+                if($result = $conn->query($query))
                 {
-                    $id = $row['id'];
+                    while($row = $result->fetch_assoc())
+                    {
                     $first_name = $row['first_name'];
                     $last_name = $row['last_name'];
                     $email = $row['email'];
+                    $password = $row['password'];
+                    $image = $row['photo'];
                     $role = $row['title'];
-                    echo"<tr>
-                        <td><a href='user.php?id=".$id."'>".$id."</a></td>
-                        <td>".$first_name."</td>
-                        <td>".$last_name."</td>
-                        <td>".$email."</td>
-                        <td>".$role."</td>
-                    </tr>";
+                        if($image == NULL)
+                        {
+                            echo"<img src='https://thispersondoesnotexist.com/image' style='height:50%'/>";
+                        }
+                        else
+                        {
+                            echo"<img src='".$image."' style='height:75%;'/>";
+                        }
+                    }
                 }
-                $result->free();
+            }
+        ?>
+        </div>
+        <div class="details">
+            <?php
+            echo"<input type='text' name='fname' value='".$first_name."' readonly><br>
+                <br>
+                <input type='text' name='lname' value='".$last_name."' readonly><br>
+                <br>
+                <input type='text' name='role' value='".$role."' readonly><br>
+                <br>";
+
+            if($_SESSION['role'] == 'admin')
+            {
+                echo"<input type='text' name='password' value='".$password."' readonly><br>";
+                echo"<br><a href='user_edit.php?id=".$id."' target='_blank' class='button' style='margin-left: 0px;'>Edit</a>";
             }
             ?>
-        </table>
-        <?php if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin') echo"<br><a href='register.php?id=add' target='_blank' class='button' style='margin-left: 0px;'>Add User</a>"; ?>
+        </div>
+    </main>
 </div>
- </body>
- <script src="assets\js\modal.js"></script>
+</body>
+<script src="assets\js\modal.js"></script>
 </html>

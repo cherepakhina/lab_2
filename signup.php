@@ -23,9 +23,6 @@ if(isset($_POST['submit']))
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['password'] = $row['password'];
                 $_SESSION['f_name'] = $row['first_name'];
-                $_SESSION['l_name'] = $row['last_name'];
-                $_SESSION['pic'] = $row['photo'];
-                $_SESSION['auth'] = true;
             }
         }
         header("Location: http://localhost/home.php");
