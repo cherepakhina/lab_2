@@ -112,11 +112,16 @@ if(isset($_GET['id']))
         }
         if(isset($title))
         {
-            $query = "UPDATE roles SET title = '$title' WHERE id = '$id";
+            $query = "UPDATE roles SET title = '$title' WHERE id = '$id'";
+
             if($result = $conn->query($query))
             {
-                header("Location: http://localhost/user_edit.php?id=".$id);
-                exit();
+                $query = "UPDATE users INNER JOIN roles ON users.id = '$id' SET users.role_id = roles.id";
+                if($result = $conn->query($query))
+                {
+                    header("Location: http://localhost/user_edit.php?id=".$id);
+                    exit();
+                }
             }
             else {
                 echo "Error: " . $query . "

@@ -87,7 +87,7 @@
                     }
                 }
             }
-            ?>
+            ?> 
         </div>
         <div class="details">
             <?php
@@ -99,17 +99,18 @@
                 <br>";
                 if($_SESSION['role'] == 'admin')
                 {
-                    echo"<select name='role' id='role'>
-                    <option value='' disabled='' selected='' hidden=''>".$role."</option>
-                    <option value='user'>User</option>
-                    <option value='admin'>Admin</option>
-                </select><br><br>";
+                    echo"
+                    <select name='role' id='role'>
+                        <option value='' disabled='' selected='' hidden=''>".$role."</option>
+                        <option value='user'>User</option>
+                        <option value='admin'>Admin</option>
+                    </select><br><br>";
                 }
                 echo"<input type='password' name='password' placeholder='Password' id='password'><br>
                 <br>
                 <input type='submit' value='Submit' name='submit' class = 'btn'>
                 </form>
-                <a href='remove.php?id=".$id."' target='_blank' class='button'>Delete Account</a>";
+                <a href='http://localhost/remove.php?id=".$id."' target='_blank' class='button'>Delete Account</a>";
             ?> 
         </div>
     </main>

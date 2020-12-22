@@ -97,10 +97,10 @@
                 <input type='text' name='role' value='".$role."' readonly><br>
                 <br>";
 
-            if($_SESSION['role'] == 'admin')
+            if(isset($_SESSION['role']) == 'admin')
             {
                 echo"<input type='text' name='password' value='".$password."' readonly><br>";
-                echo"<br><a href='user_edit.php?id=".$id."' target='_blank' class='button' style='margin-left: 0px;'>Edit</a>";
+                echo"<br><a href='http://localhost/user_edit.php?id=".$id."' target='_blank' class='button' style='margin-left: 0px;'>Edit</a>";
             }
             ?>
         </div>

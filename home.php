@@ -85,7 +85,7 @@
                     $email = $row['email'];
                     $role = $row['title'];
                     echo"<tr>
-                        <td><a href='user.php?id=".$id."'>".$id."</a></td>
+                        <td><a href='http://localhost/user.php?id=".$id."'>".$id."</a></td>
                         <td>".$first_name."</td>
                         <td>".$last_name."</td>
                         <td>".$email."</td>
